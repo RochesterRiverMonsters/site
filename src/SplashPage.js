@@ -5,8 +5,8 @@ import logo from './rivermonsters.png';
 export class SplashPage extends React.Component {
     render() {
         return (
-                <div class="site-wrapper">
-                  <div class="splash-page">
+                <div className="site-wrapper">
+                  <div className="splash-page">
                     <div className="row justify-content-md-center">
                       <div className="col-md-auto">
                         <img alt="Rochester River Monsters Logo" className="img-fluid splash-image" src={logo}/>
