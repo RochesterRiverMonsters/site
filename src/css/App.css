@@ -1,0 +1,8 @@
+body {
+  font-family: sans-serif;
+  background-image: url("../images/rrmbackground.png");
+  background-repeat: no-repeat;
+  background-position: bottom center;
+  background-attachment: fixed;
+  background-size: cover;
+}

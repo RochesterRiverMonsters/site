@@ -1,0 +1,29 @@
+.splash-page {
+  display: table;
+  width: 100%;
+  height: 100vh;
+  min-height: 100vh;
+}
+
+.splash-image {
+  height: 60vh;
+}
+
+.splash-name-title {
+  font-size: 3em;
+  font-weight: bold;
+  color: #6f6f6f;
+  margin: 18px;
+}
+
+.splash-tagline {
+  font-size: 2em;
+  font-style: oblique;
+  color: #6f6f6f;
+  margin: 18px;
+}
+
+.site-wrapper {
+  text-align: center;
+  text-shadow: 0 0.05rem 0.1rem rgba(0,0,0,.5);
+}

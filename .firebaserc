@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "rrm-public-website"
+    "default": "rrm-public-website",
+    "staging": "rrm-uat-site"
   }
 }

@@ -1,0 +1,36 @@
+body {
+  padding-top: 70px;
+}
+
+.rrm-banner {
+  font-weight: bold;
+  font-size: 1.75em;
+  width: 100%;
+  top: 0;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: white;
+}
+
+.rrm-banner > .mi {
+  display: table-cell;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+.rrm-banner > a {
+  color: #6f6f6f;
+  text-decoration: none;
+}
+
+.rrm-banner > a:hover {
+  color: #38bfb2;
+  text-decoration: none;
+}
+
+.rrm-banner > .brand {
+  padding-left: 8px;
+  padding-right: 8px;
+}

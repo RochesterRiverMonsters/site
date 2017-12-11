@@ -1,0 +1,25 @@
+.rrm-item-name {
+  font-weight: bold;
+  font-style: italic;
+}
+
+.rr-item-desc {
+
+}
+
+.rrm-catalog-box {
+  margin-top: 2vh;
+  padding-top: 4vh;
+  background-color: rgba(230, 230, 230, 0.5);
+  font-family: sans-serif;
+  border-radius: 3px;
+  border-color: rgba(60,60,60, 0.8);
+  border-style: groove;
+  padding-bottom: 1.5em;
+  width: 70vw;
+  font-size: 1.5em;
+}
+
+.rrm-catalog-header {
+  text-align: center;
+}
