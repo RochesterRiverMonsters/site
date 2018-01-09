@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import {SiteHeader} from './SiteHeader';
 import {News} from './News';
 import {Catalog} from './catalog';
+import {ThankYou} from './thanks';
 import './css/App.css';
 
 class App extends React.Component {
@@ -15,6 +16,7 @@ class App extends React.Component {
               <Route exact path="/" component={News} />
               <Route exact path="/news/youth-team-signup" component={News} />
               <Route exact path="/signup/youth-team" component={Catalog} />
+              <Route exact path="/thank-you" component={ThankYou} />
             </Switch>
           </Router>
       </div>

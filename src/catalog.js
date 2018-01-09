@@ -1,6 +1,8 @@
 import React from 'react';
-import {injectStripe, Elements, StripeProvider} from 'react-stripe-elements';
 import './css/catalog.css';
+import fire from './fire.js'
+import {withRouter} from 'react-router-dom'
+require("firebase/firestore");
 
 class CatalogDescription extends React.Component {
 
@@ -15,6 +17,123 @@ class CatalogDescription extends React.Component {
   }
 }
 
+class FormControl extends React.Component {
+  constructor(props) {
+    super(props);
+    var className = 'form-control';
+    if (this.props.error) {
+      className = className + " rrm-form-error";
+    }
+
+    this.state = {
+      className: {className}
+    };
+
+  }
+
+  render() {
+    return(
+      <div className="form-group">
+        <label htmlFor={this.props.component}>{this.props.label}</label>
+        {this.props.children}
+      </div>
+    );
+  }
+}
+
+class Name extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleChange = props.listener.bind(this);
+
+
+  }
+
+  handleChange(e) {
+    this.props.onClassNameChange(e.target.className)
+  }
+
+  handleError() {
+  }
+
+  render() {
+
+    return(
+      <FormControl component={this.props.component} label={this.props.label}>
+        <input type="text" className="form-control" name={this.props.firstNameField} id={this.props.firstNameField} placeholder="First Name" onChange={(e) => this.handleChange(e)}/>
+        <input type="text" className="form-control" name={this.props.lastNameField} id={this.props.lastNameField} placeholder="Last Name" onChange={(e) => this.handleChange(e)}/>
+      </FormControl>
+    );
+  }
+}
+
+class GeneralField extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleChange = props.listener.bind(this);
+  }
+
+  render() {
+    return(
+      <FormControl component={this.props.component} label={this.props.label}>
+        <input type={this.props.type} placeholder={this.props.placeholder} className='form-control' name={this.props.component} id={this.props.component} onChange={(e) => this.handleChange(e)}/>
+      </FormControl>
+    );
+  }
+}
+
+class SelectField extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleChange = props.listener.bind(this);
+  }
+
+  render() {
+    return (
+      <FormControl component={this.props.component} label={this.props.label}>
+        <select className='form-control' name={this.props.component} id={this.props.component} onChange={(e) => this.handleChange(e)}>
+          {this.props.children}
+        </select>
+      </FormControl>
+    );
+  }
+}
+
+class PositionField extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.handleChange = props.listener.bind(this);
+  }
+
+  render() {
+    return(
+      <SelectField listener={this.props.listener} component={this.props.component} label={this.props.label}>
+          <option val="na" disabled="true" selected="true">Select Position</option>
+          <option val="runr">Runner</option>
+          <option val="goal">Goalie</option>
+          <option val="unkn">Undecided</option>
+      </SelectField>
+    );
+  }
+}
+
+class HandednessField extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return(
+      <SelectField listener={this.props.listener} component={this.props.component} label={this.props.label}>
+        <option val="na" disabled="true" selected="true">Select Preferred Hand</option>
+        <option val="R">Right</option>
+        <option val="L">Left</option>
+      </SelectField>
+    );
+  }
+}
+
 class CatalogItem extends React.Component {
   render() {
     return(
@@ -24,9 +143,9 @@ class CatalogItem extends React.Component {
         <CatalogDescription name="Location" description="Rochester Sports Garden" />
         <CatalogDescription name="Time">
           <ul>
-            <li>PeeWee (2006 & 2007): 5-6PM,</li>
-            <li>Bantam (2004 & 2005): 6-7PM,</li>
-            <li>Midget (2001 - 2003): 7-8PM</li>
+            <li>PeeWee (2006 & 2007): 6 - 7:20PM</li>
+            <li>Bantam (2004 & 2005): 7:20 - 8:40PM</li>
+            <li>Midget (2001 - 2003): 8:40 - 10PM</li>
           </ul>
         </CatalogDescription>
         <CatalogDescription name="Price" description="$40" />
@@ -36,6 +155,8 @@ class CatalogItem extends React.Component {
             <li>River Monsters shooter shirt</li>
           </ul>
         </CatalogDescription>
+        <p className="text-danger"><i>All fields are required</i></p>
+
         <OrderForm />
       </div>
     )
@@ -45,71 +166,100 @@ class CatalogItem extends React.Component {
 class OrderForm extends React.Component {
   constructor(props) {
     super(props);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+
     var uuid = require('uuid4');
     this.state = {
       uuid: uuid()
     }
+    this.buildForm();
+  }
+
+  addListener(listenerRef) {
+    this.listeners.push(listenerRef);
+  }
+
+  buildForm() {
+    return(
+        <form>
+          <Name listener={this.handleChange} label="Player Name" component="playerFirstName" firstNameField="playerFirstName" lastNameField="playerLastName"/>
+          <Name listener={this.handleChange} label="Parent Name" component="parentFirstName" firstNameField="parentFirstName" lastNameField="parentLastName"/>
+          <GeneralField listener={this.handleChange} label="Player Date of Birth" component="dob" type="date" />
+          <GeneralField listener={this.handleChange} placeholder="(585) 555-1212" label="Primary Phone Number" component="primaryPhoneNumber" type="tel" />
+          <GeneralField listener={this.handleChange} placeholder="monster@rochesterrivermonsters.com" label="Primary Email Address" component="primaryEmailAddress" type="email" />
+          <PositionField listener={this.handleChange} label="Primary Position" component="position" />
+          <HandednessField listener={this.handleChange} label="Preferred Hand" component="handedness" />
+          <input className="btn btn-default" type="button" onClick={(e) => this.handleSubmit(e)} value="Sign Up"/>
+        </form>
+    )
   }
 
   handleChange(event) {
-    var key = event.target.id;
-    var property = event.target.value;
-    var liveState = this.state;
-    liveState[key] = property;
-    this.setState(liveState);
+    const target = event.target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const name = target.name;
+
+    this.setState({
+      [name]: value
+    });
   }
 
   handleSubmit(event) {
-    alert('A signup was submitted: ' + this.state);
+    var error = false;
+    var state = this.state;
+    if (state.playerFirstName === undefined || state.playerFirstName === "" || state.playerLastName === undefined || state.playerLastName === "" ) {
+      this.setState((state) => ({playerNameError: true}));
+      this.playerNameComponent.setState((old) => {className: old.className.append(' rrm-form-error')});
+      error = true;
+    }
+
+    if (state.parentFirstName === undefined || state.parentFirstName === "" || state.parentLasttName === undefined || state.parentLasttName === "" ) {
+      error = true;
+    }
+
+    if (state.dob === undefined || state.dob ==="") {
+      error = true;
+    }
+
+    // if (!error) {
+      var doc = {
+        player: {
+          name: {
+            first: state.playerFirstName,
+            last: state.playerLastName
+          },
+          position: state.position,
+          handedness: state.handedness,
+          dob: state.dob
+        },
+        guardian: {
+          name: {
+            first: state.parentFirstName,
+            last: state.parentLastName
+          },
+          phone: state.primaryPhoneNumber,
+          email: state.primaryEmailAddress
+        }
+      }
+
+      // Initialize Cloud Firestore through Firebase
+      var db = fire.firestore();
+      db.collection("youth").add(doc)
+        .then(function(docRef) {
+          console.log("Document written with ID: ", docRef.id);
+          // this.context.router.history.push('/thank-you');
+        })
+        .catch(function(error) {
+          console.error("Error adding document: ", error);
+        });
+    // }
     event.preventDefault();
   }
 
   render() {
     return(
-      <StripeProvider key="pk_test_TXLov0aMrOxasXCIhLC3N61O">
-        <Elements>
-          <form onSubmit={(e) => this.handleSubmit(e)}>
-            <div className="form-group">
-              <label htmlFor="playerFirstName">Participant Name</label>
-              <input type="text" className="form-control" id="playerFirstName" placeholder="First Name" onChange={(e) => this.handleChange(e)}/>
-              <input type="text" className="form-control" id="playerLastName" placeholder="Last Name" onChange={(e) => this.handleChange(e)}/>
-            </div>
-            <div className="form-group">
-              <label htmlFor="parentFirstName">Parent/Guardian Name</label>
-              <input type="text" className="form-control" id="parentFirstName" placeholder="First Name" onChange={(e) => this.handleChange(e)}/>
-              <input type="text" className="form-control" id="parentLastName" placeholder="Last Name" onChange={(e) => this.handleChange(e)}/>
-            </div>
-            <div className="form-group">
-              <label htmlFor="birthDate">Participant Date of Birth</label>
-              <input type="date" className="form-control" id="birthDay" onChange={(e) => this.handleChange(e)}/>
-            </div>
-            <div className="form-group">
-              <label htmlFor="primaryPhoneNumber">Primary Phone Number</label>
-              <input type="tel" className="form-control" id="primaryPhoneNumber" placeholder="(585) 555-1212" onChange={(e) => this.handleChange(e)}/>
-            </div>
-            <div className="form-group">
-              <label htmlFor="primaryEmailAddress">Primary Email Address</label>
-              <input type="email" className="form-control" id="primaryEmailAddress" placeholder="monster@rochesterrivermonsters.com" onChange={(e) => this.handleChange(e)}/>
-            </div>
-            <div className="form-group">
-              <label htmlFor="position">Primary Position</label>
-              <select className="form-control" id="position" onChange={(e) => this.handleChange(e)}>
-                <option val="runr">Runner</option>
-                <option val="goal">Goalie</option>
-                <option val="unkn">Undecided</option>
-              </select>
-            </div>
-            <div className="form-group">
-              <label htmlFor="handedness">Preferred Hand</label>
-              <select className="form-control" id="handedness" onChange={(e) => this.handleChange(e)}>
-                <option val="R">Right</option>
-                <option val="L">Left</option>
-              </select>
-            </div>
-            <input className="btn btn-default" type="submit" value="Sign Up"/>
-          </form>
-        </Elements>
-      </StripeProvider>
+      this.buildForm()
     )
   }
 }

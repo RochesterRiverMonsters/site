@@ -23,3 +23,7 @@
 .rrm-catalog-header {
   text-align: center;
 }
+
+.rrm-form-error {
+  border-color: #ff0000;
+}
