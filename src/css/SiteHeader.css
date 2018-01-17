@@ -1,5 +1,6 @@
 body {
-  padding-top: 46vmin;
+  padding-top: 50vmin;
+  padding-bottom: 12vmin;
 }
 
 .rrm-header {
@@ -20,4 +21,46 @@ body {
   position: fixed;
   width: 40vmax;
   height: 45vmin;
+}
+
+.rrm-menu-bar {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  background: rgba(255,255,255,0.95);
+  z-index: 9999;
+  height: 10vh;
+
+}
+
+.rrm-menu-items {
+  margin-left: auto;
+  margin-right: auto;
+  width: 30vmax;
+  position: fixed;
+  bottom: 3.5vh;
+  left: 0;
+  right: 0;
+}
+
+.rrm-menu-items > a {
+  font-size: 2vw;
+  font-weight: bold;
+  color: #59c1b6;
+  padding-left: 1.25vw;
+  padding-right: 1.25vw;
+}
+
+.rrm-menu-desc {
+  font-size: 1vw;
+  font-weight: bold;
+  font-style: oblique;
+  color: #474747;
+  margin-left: auto;
+  margin-right: auto;
+  width: 10vmax;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
