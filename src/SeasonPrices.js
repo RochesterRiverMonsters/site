@@ -1,6 +1,4 @@
 import React from 'react';
-import {Image} from 'react-bootstrap';
-import logo from './images/rivermonsters-brand.png';
 import './css/SeasonPrices.css';
 import './css/News.css';
 
