@@ -11,8 +11,8 @@ export class SeasonPrices extends React.Component {
             <h1 className="text-center rrm-news-header">Rochester River Monsters NAMLA Prices</h1>
           </div>
           <div className="row">
-            <div className="col-sm-1"></div>
-            <div className="col-sm-10">
+            <div className="col-sm-3"></div>
+            <div className="col-sm-9">
               <div className="row rrm-news-article">
                 <div className="row">
                   <b>Base Roster Price: $695.00</b>
