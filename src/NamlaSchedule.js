@@ -53,7 +53,7 @@ export class NamlaSchedule extends React.Component {
                   <td>Sat, June 23</td><td>10 AM</td><td>Allegany Arrows</td><td><a target="rrm_arena_page" href="https://goo.gl/maps/e7wCwhDJ2J22">Allegany Community Center</a></td>
                 </tr>
                 <tr>
-                  <td>Wed, June 26</td><td>6 PM</td><td>Champion Lacrosse</td><td><a target="rrm_arena_page" href="https://goo.gl/maps/TEHActpGKnM2">Buffalo River Works</a></td>
+                  <td>Tue, June 26</td><td>6 PM</td><td>Champion Lacrosse</td><td><a target="rrm_arena_page" href="https://goo.gl/maps/TEHActpGKnM2">Buffalo River Works</a></td>
                 </tr>
               </tbody>
             </table>
