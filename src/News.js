@@ -20,7 +20,7 @@ export class News extends React.Component {
                Tonawanda Braves, Allegany Arrows, Newtown Golden Eagles and more, just as our Mens team does. Tryouts for all three levels of this team will be Febrauary 23rd
                and practices will start in March.</div>
               <div className="row rrm-news-nav">Sign up to reserve your spot now!</div>
-              <div className="row rrm-news-nav"><a href="https://www.eventbrite.com/e/namla-rochester-river-monsters-youth-tryouts-tickets-41950976500" className="btn btn-default">Sign Up</a></div>
+              <div className="row rrm-news-nav"><a href="https://www.eventbrite.com/e/namla-rochester-river-monsters-youth-tryouts-makeup-tryouts-tickets-43571427312" className="btn btn-default">Sign Up</a></div>
             </div>
           </div>
       </div>
