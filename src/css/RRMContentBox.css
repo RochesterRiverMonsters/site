@@ -1,5 +1,5 @@
 @media screen and (max-width: 600px) {
-  .rrm-news-headline-image { display: none; }
+  .rrm-content-box-headline-image { display: none; }
 }
 
 .rrm-content-box-slate {
@@ -25,7 +25,27 @@
   font-weight: bold;
 }
 
+.rrm-content-box-intro-text {
+  margin-bottom: 0.75em;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
 .rrm-content-box-article{
   font-size: 1.15em;
   width: 100%;
+}
+
+.rrm-content-box-bottom {
+  font-weight: bold;
+  padding-top: 1.15em;
+}
+
+.rrm-content-box-article-row {
+  font-size: 1.25vmax;
+  width: 100%;
+}
+
+.rrm-buffer-left {
+  margin-left: 25px;
 }

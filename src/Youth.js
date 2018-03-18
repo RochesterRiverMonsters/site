@@ -1,5 +1,6 @@
 import React from 'react';
 import {RRMContentBox} from './RRMContentBox';
+import {LeftNav} from './LeftNav';
 import './css/News.css';
 
 
@@ -8,7 +9,13 @@ export class Youth extends React.Component {
     return(
       <div>
       <RRMContentBox
-      header='Program' body='Text goes here'
+      displayLogo='true'
+      header='Program'
+      introText = 'This comes before the body!'
+      body='Text goes here'
+      bottomText='This is bottom text in bold'
+      buttonLink="https://google.com"
+      buttonText='Test'
       />
       <br />
       <RRMContentBox
@@ -17,8 +24,9 @@ export class Youth extends React.Component {
       />
       <br />
       <RRMContentBox
+      displayLogo='true'
       header='Q&A'
-      body='Text goes here'
+      body='Article'
       />
       </div>
     )
