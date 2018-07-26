@@ -10,9 +10,11 @@
     "popper.js": "^1.12.9",
     "react": "^16.2.0",
     "react-bootstrap": "^0.31.5",
+    "react-device-detect": "^1.5.8",
     "react-dom": "^16.2.0",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.0.17",
+    "react-sidenav": "^2.1.2",
     "react-stripe-elements": "^1.2.1",
     "uuid4": "^1.0.0"
   },
