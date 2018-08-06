@@ -22,3 +22,13 @@
   padding-top: 8px;
   padding-bottom: 8px;
 }
+
+.left-nav-slate {
+  background-color: rgba(230, 230, 230, 0.5);
+  font-family: sans-serif;
+  border-radius: 3px;
+  border-color: rgba(60,60,60, 0.8);
+  border-style: groove;
+  padding-bottom: 1.5em;
+  width: 70vw;
+}
